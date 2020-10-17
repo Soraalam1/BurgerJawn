@@ -1,0 +1,26 @@
+<table class="table table-hover">
+    <tr *ngFor="let menuItem of menuItems" [class.featured]="menuItem.featured">
+      <td><img [src]="menuItem.image" alt="{{menuItem.name}}"></td>
+      <td>
+          <h2>{{menuItem.name | uppercase}}</h2>
+          <p>{{menuItem.description}}</p>
+          <p *ngIf="menuItem.amount > 0">You'll love 
+           our {{menuItem.name}}!</p>
+          <p *ngIf="menuItem.amount === 0">No {{menuItem.name}} 
+        today?</p>
+    </td>
+      <td><p id=price>{{menuItem.price | currency: 'EUR'}}</p></td>
+      <td>
+        <button class="btn btn-primary btn-lg" (click)="upAmount(menuItem)">+</button>
+        <input type="number" [(ngModel)]="menuItem.amount" disabled>
+        <!-- {{menuItem.amount}} -->
+        <button class="btn btn-primary btn-lg" (click)="downAmount(menuItem)">-</button>
+      </td>
+    </tr>
+  </table>
+
+  <p>Note: You currently have {{cart}} items in your cart.</p>
+  <p id=total>Your total is: <span id=price>{{total | currency: 'EUR'}}</span></p>
+
+  <footer><a href="https://www.bk.com/
+    ">For digital menus contact us today</a></footer>
